@@ -29,7 +29,9 @@ def make_line_score(team1Name, team1Scores, team2Name, team2Scores):
     line = [header, team1, team2]
     return make_table(line)
 
-def make_box_score(awayTeam, homeTeam):
+def make_box_score():
+	homeTeam = grabData.getHomeTeam()
+	awayTeam = grabData.getAwayTeam()
 	ret = '#' + awayTeam + ' vs. ' + homeTeam + '\n\n'
 	ret += grabData.getLineScore()
 	ret += '\n#Passing Stats\n\n'
