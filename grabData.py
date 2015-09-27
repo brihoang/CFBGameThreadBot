@@ -6,11 +6,26 @@ TEAM_STATS_URL = "http://espn.go.com/college-football/matchup?gameId="
 homeTeam = ''
 awayTeam = ''
 
-def setUpTeams(home, away):
+def setUpTeams():
     global homeTeam
+    global homeTeamNick
     global awayTeam
-    homeTeam = home
-    awayTeam = away
+    global awayTeamNick
+
+    teams = soup.find_all('a', 'team-name')
+
+
+    awayTeam = teams[0].find('span', 'long-name').getText()
+    homeTeam = teams[1].find('span', 'long-name').getText()
+    awayTeamNick = teams[0].find('span', 'short-name').getText()
+    homeTeamNick = teams[1].find('span', 'short-name').getText()
+
+def getHomeTeam():
+    return homeTeam + " " + homeTeamNick
+
+def getAwayTeam():
+    return awayTeam + " " + awayTeamNick
+
 
 def setUpGameId(gameId):
     global BASE_URL 
