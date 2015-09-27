@@ -60,15 +60,17 @@ def getStats(statType):
         for x in xrange(numRows):
             row = []
             if x >= len(awayBody):
-                row = ['' for x in xrange(numStats)]
+                row = ['' for y in xrange(numStats)]
             else:
                 for stat in awayBody[x].findAll('td'):
                     row.append(stat.getText())
                 if statType == 'passing':
                     row.pop()
 
+            print x
+            print len(homeBody)
             if x >= len(homeBody):
-                row += ['' for x in xrange(numStats)]
+                row += ['' for y in xrange(numStats)]
             else:
                 for stat in homeBody[x].findAll('td'):
                     row.append(stat.getText())
@@ -78,8 +80,14 @@ def getStats(statType):
         finalRow = []
         for x in awayTotal:
             finalRow.append(x.getText())
+        for x in xrange(numStats - len(awayTotal)):
+            finalRow.append('')
+
+         
         for x in homeTotal:
             finalRow.append(x.getText())
+        for x in xrange(numStats - len(homeTotal)):
+            finalRow.append('')
 
         finalMat.append(finalRow)
 
