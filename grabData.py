@@ -6,6 +6,9 @@ TEAM_STATS_URL = "http://espn.go.com/college-football/matchup?gameId="
 homeTeam = ''
 awayTeam = ''
 
+def boxScoreExists():
+    return boxScoreAvail
+
 def setUpTeams():
     global homeTeam
     global homeTeamNick
@@ -36,10 +39,24 @@ def setUpGameId(gameId):
     global teamSoup
     BASE_URL += str(gameId)
     TEAM_STATS_URL += str(gameId)
+    refresh()
+
+def refresh():
+    global html
+    global soup
+    global teamHtml
+    global teamSoup
+    global boxScoreAvail
     html = urlopen(BASE_URL)
     teamHtml = urlopen(TEAM_STATS_URL)
     soup = BeautifulSoup(html, 'lxml')
     teamSoup = BeautifulSoup(teamHtml, 'lxml')
+    if soup.find(id='gamepackage-passing') is None:
+        boxScoreAvail = False 
+    else:
+        boxScoreAvail = True 
+
+
 
 def getLineScore():
     linescore = soup.find_all('td', 'team-name')
