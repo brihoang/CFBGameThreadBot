@@ -30,26 +30,29 @@ def make_line_score(team1Name, team1Scores, team2Name, team2Scores):
     return make_table(line)
 
 def make_box_score():
-	homeTeam = grabData.getHomeTeam()
-	awayTeam = grabData.getAwayTeam()
-	ret = '#' + awayTeam + ' vs. ' + homeTeam + '\n\n'
-	ret += grabData.getLineScore()
-	ret += '\n#Passing Stats\n\n'
-	ret += grabData.getStats('passing')
-	ret += '\n#Rushing Stats\n\n'
-	ret += grabData.getStats('rushing')
-	ret += '\n#Receiving Stats\n\n'
-	ret += grabData.getStats('receiving')
-	ret += '\n#Interception Stats\n\n'
-	ret += grabData.getStats('interceptions')
-	ret += '\n#Kick Return Stats\n\n'
-	ret += grabData.getStats('kickReturns')
-	ret += '\n#Punt Return Stats\n\n'
-	ret += grabData.getStats('puntReturns')
-	ret += '\n#Kicking Stats\n\n'
-	ret += grabData.getStats('kicking')
-	ret += '\n#Punting Stats\n\n'
-	ret += grabData.getStats('punting')
-	ret += '\n#Team Stats\n\n'
-	ret += grabData.getTeamStats()
-	return ret
+    if not grabData.boxScoreExists():
+        return 'Box Score currently not available'
+    else: 
+            homeTeam = grabData.getHomeTeam()
+            awayTeam = grabData.getAwayTeam()
+            ret = '#' + awayTeam + ' vs. ' + homeTeam + '\n\n'
+            ret += grabData.getLineScore()
+            ret += '\n#Passing Stats\n\n'
+            ret += grabData.getStats('passing')
+            ret += '\n#Rushing Stats\n\n'
+            ret += grabData.getStats('rushing')
+            ret += '\n#Receiving Stats\n\n'
+            ret += grabData.getStats('receiving')
+            ret += '\n#Interception Stats\n\n'
+            ret += grabData.getStats('interceptions')
+            ret += '\n#Kick Return Stats\n\n'
+            ret += grabData.getStats('kickReturns')
+            ret += '\n#Punt Return Stats\n\n'
+            ret += grabData.getStats('puntReturns')
+            ret += '\n#Kicking Stats\n\n'
+            ret += grabData.getStats('kicking')
+            ret += '\n#Punting Stats\n\n'
+            ret += grabData.getStats('punting')
+            ret += '\n#Team Stats\n\n'
+            ret += grabData.getTeamStats()
+            return ret
